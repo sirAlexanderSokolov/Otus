@@ -1,0 +1,16 @@
+language: cpp
+before_script:
+  - sudo apt-get install googletest -y
+# - echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
+# - sudo apt-get update -qq
+script:
+  - cd build
+  - cmake ..
+  - cmake --build .
+  - cmake --build . target test
+  - cmake --build . target package
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: curl -T helloworlxd-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb
+  # - curl -T helloworlxd-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -ustarokurov:$BINTRAY_API_KEY "asdsad"
