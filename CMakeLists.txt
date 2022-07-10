@@ -13,7 +13,7 @@ endif()
 #Опции проекта
 # option(BUILD_LIB_HELLO "Включить модульное тестирование" OFF)
 # option(BUILD_LIB_TEST "Включить модульное тестирование" OFF)
-option(TESTING_GTEST "Включить модульное тестирование" OFF)
+option(TESTING_GTEST "Включить модульное тестирование" ON)
 option(COVERAGE_GTEST "Включить покрытие кода тестами" OFF)
 # set (CMAKE_CXX_COMPILER "/usr/bin/g++")
 # set (CMAKE_CXX_COMPILER g++) 

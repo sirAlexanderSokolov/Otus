@@ -14,6 +14,7 @@ include(GoogleTest)
 #сборка
 set(SOURCES 
 test_main.cpp
+lib/lib_print_test.cpp
 )
 
 add_executable(${TEST_PROJECT_NAME} ${SOURCES})
@@ -26,7 +27,8 @@ target_link_libraries(${TEST_PROJECT_NAME}
     GTest::GTest 
     GTest::Main
     gcov
-    ${PROJECT_NAME}
+    LIB_BIG LIB_HELLO 
+    LIB_PRINT
     )
     
 #покрытие
