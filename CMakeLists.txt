@@ -15,9 +15,6 @@ endif()
 # option(BUILD_LIB_TEST "Включить модульное тестирование" OFF)
 option(TESTING_GTEST "Включить модульное тестирование" OFF)
 option(COVERAGE_GTEST "Включить покрытие кода тестами" OFF)
-
-configure_file(version.h.in version.h)
-
 # set (CMAKE_CXX_COMPILER "/usr/bin/g++")
 # set (CMAKE_CXX_COMPILER g++) 
 
@@ -41,6 +38,8 @@ errors.h
 )
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 target_link_libraries(${PROJECT_NAME} LIB_BIG LIB_HELLO LIB_PRINT)
+configure_file(version.h.in version.h)
+target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_BINARY_DIR}")
 #=====================================================
 # add_definitions(-DDEBUG)
 
