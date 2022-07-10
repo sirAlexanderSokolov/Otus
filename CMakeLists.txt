@@ -1,6 +1,7 @@
-cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.18 FATAL_ERROR)
 project (helloworlxd)
 
+set(CMAKE_PROJECT_HOMEPAGE_URL "shadoffarts.ru")
 set(PROJECT_VERSION_MAJOR 1)
 set(PROJECT_VERSION_MINOR 0)
 if ($ENV{TRAVIS_BUILD_NUMBER})
@@ -18,7 +19,7 @@ option(COVERAGE_GTEST "Включить покрытие кода тестами
 configure_file(version.h.in version.h)
 
 # set (CMAKE_CXX_COMPILER "/usr/bin/g++")
-# set (CMAKE_CXX_COMPILER g++)
+# set (CMAKE_CXX_COMPILER g++) 
 
 find_program(GCOVR_EXECUTABLE lcov)
 
@@ -43,7 +44,25 @@ target_link_libraries(${PROJECT_NAME} LIB_BIG LIB_HELLO LIB_PRINT)
 #=====================================================
 # add_definitions(-DDEBUG)
 
+set(CPACK_GENERATOR "DEB;TGZ")
+set(CPACK_PACKAGE_CONTACT "shad@shad.ru")
+set(CPACK_PACKAGE_DIRECTORY ${PROJECT_SOURCE_DIR}/packages)
+set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
+set(CPACK_PACKAGE_VENDOR "sir_Alexander")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Project_Hello by Alex for Otus")
+set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR})
+set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
+# set(CPACK_PACKAGE_INSTALL_DIRECTORY "/opt/mydir/")
+if (CPACK_GENERATOR MATCHES "DEB")
+install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION /opt/mylib)
+elseif (CPACK_GENERATOR MATCHES "DEB")
+install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
+endif()
+include(CPack)
+
 # модульные гугл-тесты
 if (TESTING_GTEST)
 add_subdirectory(unit_test)
 endif()
+

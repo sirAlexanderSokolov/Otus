@@ -8,6 +8,18 @@
             "type": "shell",
             "command": "cd build/; find . -not -name '.gitignore' -delete",
             "problemMatcher": []
+        },
+        {
+            "label": "clear packages",
+            "type": "shell",
+            "command": "cd packages/; find . -not -name '.gitignore' -delete",
+            "problemMatcher": []
+        },
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "cd build/; cmake ..; cmake --build .; cpack -G DEB; cpack -G TGZ;",
+            "problemMatcher": []
         }
     ]
 }
